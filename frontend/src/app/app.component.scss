@@ -1,0 +1,52 @@
+.container {
+    
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.buttonMenu {
+    display: flex;
+    flex-direction: row;
+}
+
+.trainList {
+    list-style-type: none;  
+    padding: 3px;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.trainElement {
+    margin: 0.25rem 0;
+    width: 6rem;
+    height: 6rem;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.buttonOverview {
+    margin: 1rem 0 0 3rem;
+}
+
+.flexrow {
+    display: flex;
+    flex-direction: row;
+}
+
+.stopButton {
+    margin-top: 1rem;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    width: 5rem;
+    height: 5rem;
+    border: 0;
+}
+
+.speed {
+    margin: auto 2rem auto 0;
+}
+
+.speedslider {
+    width: 15rem;
+}

@@ -1,0 +1,28 @@
+<div class="page">
+  <div class="container">
+    <h3 class="mt-5">Live Streaming</h3>
+    <img src="http://localhost:8003/video_feed" width="100%">
+
+    <div class="buttonMenu">
+      <div class="trainSelect">
+        <li *ngFor="let train of trains; index as i" class="trainList">
+          <button  class="trainElement trainElementSelected" (click)="onTrainClick(i)" [style.backgroundColor]=train.background>
+            {{train.name}}
+          </button>          
+        </li>
+      </div>
+      <div class="buttonOverview">
+        <div class="flexrow">
+          <span class="speed">Speed:</span>
+          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel" class="speedslider">
+            <input value="{{trains[selected].speed}}" (valueChange)="onSpeedChange($event)" matSliderThumb >
+          </mat-slider>
+        </div>
+        <button class="stopButton" (click)="onClickStop()">
+          STOP
+        </button>
+      </div>
+    </div>
+    
+  </div>
+</div>
