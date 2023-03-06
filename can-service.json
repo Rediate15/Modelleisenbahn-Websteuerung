@@ -1,0 +1,1467 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+    },
+    "paths": {
+    "/general/hash": {
+    "get": {
+    "tags": [
+    "general"
+    ],
+    "summary": "Get Hash",
+    "operationId": "get_hash_general_hash_get",
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    }
+    }
+    }
+    },
+    "/lok/{loc_id}/speed": {
+    "get": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Get Speed",
+    "operationId": "get_speed_lok__loc_id__speed_get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SpeedModel"
+    }
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    },
+    "post": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Set Speed",
+    "operationId": "set_speed_lok__loc_id__speed_post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SpeedModel"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/lok/{loc_id}/direction": {
+    "get": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Get Direction",
+    "operationId": "get_direction_lok__loc_id__direction_get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/DirectionModel"
+    }
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    },
+    "post": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Set Direction",
+    "operationId": "set_direction_lok__loc_id__direction_post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/DirectionModel"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/lok/{loc_id}/function/{function}": {
+    "get": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Get Function",
+    "operationId": "get_function_lok__loc_id__function__function__get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": true,
+    "schema": {
+    "title": "Function",
+    "type": "integer"
+    },
+    "name": "function",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/FunctionValueModel"
+    }
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    },
+    "post": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "Set Function",
+    "operationId": "set_function_lok__loc_id__function__function__post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": true,
+    "schema": {
+    "title": "Function",
+    "type": "integer"
+    },
+    "name": "function",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/FunctionValueModel"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/lok/list": {
+    "get": {
+    "tags": [
+    "lok"
+    ],
+    "summary": "List Locs",
+    "operationId": "list_locs_lok_list_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/accessory/{loc_id}": {
+    "post": {
+    "tags": [
+    "accessory"
+    ],
+    "summary": "Set Accessory",
+    "operationId": "set_accessory_accessory__loc_id__post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "name": "loc_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SwitchingAccessoriesModel"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/accessory/list": {
+    "get": {
+    "tags": [
+    "accessory"
+    ],
+    "summary": "List Mags",
+    "operationId": "list_mags_accessory_list_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/s88/{device_id}/{contact_id}": {
+    "get": {
+    "tags": [
+    "s88"
+    ],
+    "summary": "Get S88",
+    "operationId": "get_s88_s88__device_id___contact_id__get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Device Id",
+    "type": "integer"
+    },
+    "name": "device_id",
+    "in": "path"
+    },
+    {
+    "required": true,
+    "schema": {
+    "title": "Contact Id",
+    "type": "integer"
+    },
+    "name": "contact_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/GetS88Model"
+    }
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    },
+    "post": {
+    "tags": [
+    "s88"
+    ],
+    "summary": "Set S88",
+    "operationId": "set_s88_s88__device_id___contact_id__post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Device Id",
+    "type": "integer"
+    },
+    "name": "device_id",
+    "in": "path"
+    },
+    {
+    "required": true,
+    "schema": {
+    "title": "Contact Id",
+    "type": "integer"
+    },
+    "name": "contact_id",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SetS88Model"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/lokinfo/{loc_name}": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Lokinfo",
+    "operationId": "get_lokinfo_config_lokinfo__loc_name__get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Loc Name",
+    "type": "string"
+    },
+    "name": "loc_name",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/loknamen": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Loknamen",
+    "operationId": "get_loknamen_config_loknamen_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "Offset",
+    "type": "integer",
+    "default": 0
+    },
+    "name": "offset",
+    "in": "query"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "Limit",
+    "type": "integer",
+    "default": 5
+    },
+    "name": "limit",
+    "in": "query"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/maginfo": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Maginfo",
+    "operationId": "get_maginfo_config_maginfo_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "Offset",
+    "type": "integer",
+    "default": 0
+    },
+    "name": "offset",
+    "in": "query"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "Limit",
+    "type": "integer",
+    "default": 5
+    },
+    "name": "limit",
+    "in": "query"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/lokdb": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Lokdb",
+    "operationId": "get_lokdb_config_lokdb_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/lang": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Lang",
+    "operationId": "get_lang_config_lang_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/ldbver": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Ldbver",
+    "operationId": "get_ldbver_config_ldbver_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/langver": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Langver",
+    "operationId": "get_langver_config_langver_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/loks": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Loks",
+    "operationId": "get_loks_config_loks_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/mags": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Mags",
+    "operationId": "get_mags_config_mags_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/gbs": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Gbs",
+    "operationId": "get_gbs_config_gbs_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/gbs/{index}": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Gbs Page",
+    "operationId": "get_gbs_page_config_gbs__index__get",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "title": "Index",
+    "type": "integer"
+    },
+    "name": "index",
+    "in": "path"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/fs": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Fs",
+    "operationId": "get_fs_config_fs_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/lokstat": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Lokstat",
+    "operationId": "get_lokstat_config_lokstat_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/magstat": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Magstat",
+    "operationId": "get_magstat_config_magstat_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/config/gbsstat": {
+    "get": {
+    "tags": [
+    "config"
+    ],
+    "summary": "Get Gbsstat",
+    "operationId": "get_gbsstat_config_gbsstat_get",
+    "parameters": [
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "200": {
+    "description": "Successful Response",
+    "content": {
+    "application/json": {
+    "schema": {}
+    }
+    }
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/status": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Get Status",
+    "operationId": "get_status_system_status_post",
+    "parameters": [
+    {
+    "required": true,
+    "schema": {
+    "$ref": "#/components/schemas/SystemStatus"
+    },
+    "name": "status",
+    "in": "query"
+    },
+    {
+    "required": false,
+    "schema": {
+    "title": "X-Can-Hash",
+    "type": "string"
+    },
+    "name": "x-can-hash",
+    "in": "header"
+    }
+    ],
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "components": {
+    "schemas": {
+    "DirectionModel": {
+    "title": "DirectionModel",
+    "required": [
+    "direction"
+    ],
+    "type": "object",
+    "properties": {
+    "direction": {
+    "$ref": "#/components/schemas/LocomotiveDirection"
+    }
+    }
+    },
+    "FunctionValueModel": {
+    "title": "FunctionValueModel",
+    "required": [
+    "value"
+    ],
+    "type": "object",
+    "properties": {
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    }
+    }
+    },
+    "GetS88Model": {
+    "title": "GetS88Model",
+    "type": "object",
+    "properties": {
+    "state_old": {
+    "title": "State Old",
+    "type": "integer"
+    },
+    "state_new": {
+    "title": "State New",
+    "type": "integer"
+    },
+    "time": {
+    "title": "Time",
+    "type": "integer"
+    }
+    }
+    },
+    "HTTPValidationError": {
+    "title": "HTTPValidationError",
+    "type": "object",
+    "properties": {
+    "detail": {
+    "title": "Detail",
+    "type": "array",
+    "items": {
+    "$ref": "#/components/schemas/ValidationError"
+    }
+    }
+    }
+    },
+    "LocomotiveDirection": {
+    "title": "LocomotiveDirection",
+    "enum": [
+    "Keep",
+    "Forwards",
+    "Backwards",
+    "Toggle"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "SetS88Model": {
+    "title": "SetS88Model",
+    "required": [
+    "parameter"
+    ],
+    "type": "object",
+    "properties": {
+    "parameter": {
+    "title": "Parameter",
+    "type": "integer"
+    }
+    }
+    },
+    "SpeedModel": {
+    "title": "SpeedModel",
+    "required": [
+    "speed"
+    ],
+    "type": "object",
+    "properties": {
+    "speed": {
+    "title": "Speed",
+    "type": "integer"
+    }
+    }
+    },
+    "SwitchingAccessoriesModel": {
+    "title": "SwitchingAccessoriesModel",
+    "required": [
+    "position",
+    "power"
+    ],
+    "type": "object",
+    "properties": {
+    "position": {
+    "title": "Position",
+    "type": "integer"
+    },
+    "power": {
+    "title": "Power",
+    "type": "integer"
+    },
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemStatus": {
+    "title": "SystemStatus",
+    "enum": [
+    "Stop",
+    "Halt",
+    "Reset",
+    "Go"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "ValidationError": {
+    "title": "ValidationError",
+    "required": [
+    "loc",
+    "msg",
+    "type"
+    ],
+    "type": "object",
+    "properties": {
+    "loc": {
+    "title": "Location",
+    "type": "array",
+    "items": {
+    "type": "string"
+    }
+    },
+    "msg": {
+    "title": "Message",
+    "type": "string"
+    },
+    "type": {
+    "title": "Error Type",
+    "type": "string"
+    }
+    }
+    }
+    }
+    }
+    }

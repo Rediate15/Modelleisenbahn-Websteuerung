@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatSliderModule} from '@angular/material/slider';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    MatSliderModule
+    MatSliderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
