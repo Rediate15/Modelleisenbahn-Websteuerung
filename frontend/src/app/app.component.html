@@ -3,7 +3,7 @@
     <h3 class="mt-5">Live Streaming</h3>
     <img src="{{server_address + '/camera/video_feed'}}" width="100%">
 
-    <div class="buttonMenu">
+    <div class="buttonMenu" *ngIf="trains.length > 0; else trainsElseBlock">
       <div class="trainSelect">
         <li *ngFor="let train of trains; index as i" class="trainList">
           <button  class="trainElement trainElementSelected" (click)="onTrainClick(i)" [style.backgroundColor]=train.background>
@@ -11,18 +11,32 @@
           </button>          
         </li>
       </div>
-      <div class="buttonOverview">
+      <div class="buttonOverview" *ngIf="selected != undefined">
         <div class="flexrow">
           <span class="speed">Speed:</span>
           <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel" class="speedslider">
             <input value="{{trains[selected].speed}}" (valueChange)="onSpeedChange($event)" matSliderThumb >
           </mat-slider>
         </div>
+        <div class="flexrow">
+          <span class="speed">Direction:</span>
+          <button class="" (click)="onForwards()" [style.backgroundColor]="trains[selected].direction ? '#aaaaaa' : '#dddddd'">
+            Forwards
+          </button>
+          <button class="" (click)="onBackwards()" [style.backgroundColor]="!trains[selected].direction ? '#aaaaaa' : '#dddddd'">
+            Backwards
+          </button>
+        </div>
         <button class="stopButton" (click)="onClickStop()">
-          STOP
+          {{systemNextState}}
         </button>
+
       </div>
     </div>
+
+    <ng-template #trainsElseBlock>
+      No trains available
+    </ng-template>
     
   </div>
 </div>

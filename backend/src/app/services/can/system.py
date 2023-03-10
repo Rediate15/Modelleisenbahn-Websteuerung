@@ -16,7 +16,7 @@ from .schemas.system import *
 
 router = APIRouter()
 
-@router.post("/status", status_code=204)
+@router.post("/status", status_code=200)
 async def get_status(status: SystemStatus, x_can_hash: str = Header(None)):
     clas = SystemStatusCommand[status.value].value
     id = 0 # all devices

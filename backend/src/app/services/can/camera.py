@@ -8,12 +8,14 @@ import numpy as np
 from fastapi.responses import HTMLResponse
 import cv2
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(1)
 
 router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
 
+camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
 def gen_frames(filter=False):  
     while True:
