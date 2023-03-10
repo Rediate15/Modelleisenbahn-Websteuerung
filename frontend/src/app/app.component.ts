@@ -106,12 +106,12 @@ export class AppComponent {
     this.httpClient.get<any>(`${this.server_address}/lok/${this.trains[index].loc_id}/direction`, {headers: headers}).subscribe(data => {
       console.log(data)
       if (data.direction == "Forwards") {
-        this.trains[index].forwards = true
+        this.trains[index].direction = true
       }
       else if (data.direction == "Backwards") {
-        this.trains[index].forwards = false
+        this.trains[index].direction = false
       }
-      
+      console.log(this.trains[index].direction)
     })
   }
 

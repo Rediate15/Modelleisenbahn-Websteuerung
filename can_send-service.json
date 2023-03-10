@@ -1,0 +1,2030 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+    },
+    "paths": {
+    "/loc/speed": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_speed_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveSpeedCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/direction": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_direction_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveDirectionCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/function": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_function_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveFunctionCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/read_config": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_read_config_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/ReadConfigCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/switch_accessory": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_switch_accessory_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SwitchingAccessoriesCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/s88_polling": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_s88_polling_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/S88PollingCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/loc/write_config": {
+    "post": {
+    "tags": [
+    "loc"
+    ],
+    "summary": "Post",
+    "operationId": "post_loc_write_config_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/WriteConfigCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/stop": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_stop_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemStopCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/halt": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_halt_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemHaltCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/go": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_go_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemGoCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/locomotive_emergency_stop": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_locomotive_emergency_stop_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveEmergencyStopCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/locomotive_cycle_stop": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_locomotive_cycle_stop_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveCycleStopCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/locomotive_data_protocol": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_locomotive_data_protocol_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveDataProtocolCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/accessory_decoder_switching_time": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_accessory_decoder_switching_time_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/AccessoryDecoderSwitchingTimeCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/mfx_fast_read": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_mfx_fast_read_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/MfxFastReadCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/enable_rail_protocol": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_enable_rail_protocol_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/EnableRailProtocolCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/set_mfx_register_counter": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_set_mfx_register_counter_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SetMfxRegisterCounterCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/overload": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_overload_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemOverloadCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/status": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_status_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemStatusCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/set_system_identifier": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_set_system_identifier_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SetSystemIdentifierCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/mfx_seek": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_mfx_seek_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/MfxSeekCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/system/reset": {
+    "post": {
+    "tags": [
+    "system"
+    ],
+    "summary": "Post",
+    "operationId": "post_system_reset_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/SystemResetCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/mfx/bind": {
+    "post": {
+    "tags": [
+    "mfx"
+    ],
+    "summary": "Post",
+    "operationId": "post_mfx_bind_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/MfxBindCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/mfx/verify": {
+    "post": {
+    "tags": [
+    "mfx"
+    ],
+    "summary": "Post",
+    "operationId": "post_mfx_verify_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/MfxVerifyCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/participant_ping": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_participant_ping_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/ParticipantPingCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/locomotive_discovery": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_locomotive_discovery_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/LocomotiveDiscoveryCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/s88_event": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_s88_event_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/S88EventCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/request_config_data": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_request_config_data_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/RequestConfigDataCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/service_status_data_configuration": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_service_status_data_configuration_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/ServiceStatusDataConfigurationCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "/bootloader_can_bound": {
+    "post": {
+    "summary": "Post",
+    "operationId": "post_bootloader_can_bound_post",
+    "requestBody": {
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/BootloaderCANBoundCommand"
+    }
+    }
+    },
+    "required": true
+    },
+    "responses": {
+    "204": {
+    "description": "Successful Response"
+    },
+    "422": {
+    "description": "Validation Error",
+    "content": {
+    "application/json": {
+    "schema": {
+    "$ref": "#/components/schemas/HTTPValidationError"
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    },
+    "components": {
+    "schemas": {
+    "AccessoryDecoderSwitchingTimeCommand": {
+    "title": "AccessoryDecoderSwitchingTimeCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "time"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "time": {
+    "title": "Time",
+    "type": "integer"
+    }
+    }
+    },
+    "BootloaderCANBoundCommand": {
+    "title": "BootloaderCANBoundCommand",
+    "required": [
+    "hash_value",
+    "response"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "data": {
+    "title": "Data",
+    "type": "string"
+    }
+    }
+    },
+    "DCCProgramming": {
+    "title": "DCCProgramming",
+    "enum": [
+    "DirectProgramming",
+    "RegisterProgramming",
+    "BitProgramming"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "EnableRailProtocolCommand": {
+    "title": "EnableRailProtocolCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "bitset"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "bitset": {
+    "title": "Bitset",
+    "type": "integer"
+    }
+    }
+    },
+    "HTTPValidationError": {
+    "title": "HTTPValidationError",
+    "type": "object",
+    "properties": {
+    "detail": {
+    "title": "Detail",
+    "type": "array",
+    "items": {
+    "$ref": "#/components/schemas/ValidationError"
+    }
+    }
+    }
+    },
+    "LocomotiveCycleStopCommand": {
+    "title": "LocomotiveCycleStopCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "LocomotiveDataProtocolCommand": {
+    "title": "LocomotiveDataProtocolCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "protocol"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "protocol": {
+    "$ref": "#/components/schemas/RailProtocolSchema"
+    }
+    }
+    },
+    "LocomotiveDirection": {
+    "title": "LocomotiveDirection",
+    "enum": [
+    "Keep",
+    "Forwards",
+    "Backwards",
+    "Toggle"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "LocomotiveDirectionCommand": {
+    "title": "LocomotiveDirectionCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "direction": {
+    "$ref": "#/components/schemas/LocomotiveDirection"
+    }
+    }
+    },
+    "LocomotiveDiscoveryCommand": {
+    "title": "LocomotiveDiscoveryCommand",
+    "required": [
+    "hash_value",
+    "response"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "protocol": {
+    "$ref": "#/components/schemas/ProtocolSchema"
+    },
+    "mfx_range": {
+    "title": "Mfx Range",
+    "type": "integer"
+    },
+    "ask_ratio": {
+    "title": "Ask Ratio",
+    "type": "integer"
+    }
+    }
+    },
+    "LocomotiveEmergencyStopCommand": {
+    "title": "LocomotiveEmergencyStopCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "LocomotiveFunctionCommand": {
+    "title": "LocomotiveFunctionCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id",
+    "function"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "function": {
+    "title": "Function",
+    "type": "integer"
+    },
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    },
+    "function_value": {
+    "title": "Function Value",
+    "type": "integer"
+    }
+    }
+    },
+    "LocomotiveSpeedCommand": {
+    "title": "LocomotiveSpeedCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "speed": {
+    "title": "Speed",
+    "type": "integer"
+    }
+    }
+    },
+    "MfxBindCommand": {
+    "title": "MfxBindCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "mfx_uid",
+    "mfx_sid"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "mfx_uid": {
+    "title": "Mfx Uid",
+    "type": "integer"
+    },
+    "mfx_sid": {
+    "title": "Mfx Sid",
+    "type": "integer"
+    }
+    }
+    },
+    "MfxFastReadCommand": {
+    "title": "MfxFastReadCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "mfx_sid"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "mfx_sid": {
+    "title": "Mfx Sid",
+    "type": "integer"
+    }
+    }
+    },
+    "MfxSeekCommand": {
+    "title": "MfxSeekCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "MfxVerifyCommand": {
+    "title": "MfxVerifyCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "mfx_uid",
+    "mfx_sid"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "mfx_uid": {
+    "title": "Mfx Uid",
+    "type": "integer"
+    },
+    "mfx_sid": {
+    "title": "Mfx Sid",
+    "type": "integer"
+    },
+    "ask_ratio": {
+    "title": "Ask Ratio",
+    "type": "integer"
+    }
+    }
+    },
+    "ParticipantPingCommand": {
+    "title": "ParticipantPingCommand",
+    "required": [
+    "hash_value",
+    "response"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "sender_id": {
+    "title": "Sender Id",
+    "type": "integer"
+    },
+    "software_version": {
+    "title": "Software Version",
+    "type": "integer"
+    },
+    "device_id": {
+    "title": "Device Id",
+    "type": "integer"
+    }
+    }
+    },
+    "ProtocolSchema": {
+    "title": "ProtocolSchema",
+    "enum": [
+    "MFX",
+    "MM2_20",
+    "MM2_40",
+    "DCC_read_short",
+    "DCC_read_long",
+    "DCC_identify",
+    "SX1_read",
+    "SX1_identify",
+    "MFX_main"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "RailProtocolSchema": {
+    "title": "RailProtocolSchema",
+    "enum": [
+    "MM2_2040",
+    "MM2_20",
+    "MM2_40",
+    "DCC_short_28",
+    "DCC_short_14",
+    "DCC_short_126",
+    "DCC_long_28",
+    "DCC_long_126"
+    ],
+    "type": "string",
+    "description": "An enumeration."
+    },
+    "ReadConfigCommand": {
+    "title": "ReadConfigCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id",
+    "index",
+    "number"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "index": {
+    "title": "Index",
+    "type": "integer"
+    },
+    "number": {
+    "title": "Number",
+    "type": "integer"
+    },
+    "count": {
+    "title": "Count",
+    "type": "integer"
+    },
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    }
+    }
+    },
+    "RequestConfigDataCommand": {
+    "title": "RequestConfigDataCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "filename"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "filename": {
+    "title": "Filename",
+    "type": "string"
+    }
+    }
+    },
+    "S88EventCommand": {
+    "title": "S88EventCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "device_id",
+    "contact_id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "device_id": {
+    "title": "Device Id",
+    "type": "integer"
+    },
+    "contact_id": {
+    "title": "Contact Id",
+    "type": "integer"
+    },
+    "parameter": {
+    "title": "Parameter",
+    "type": "integer"
+    },
+    "state_old": {
+    "title": "State Old",
+    "type": "integer"
+    },
+    "state_new": {
+    "title": "State New",
+    "type": "integer"
+    },
+    "time": {
+    "title": "Time",
+    "type": "integer"
+    }
+    }
+    },
+    "S88PollingCommand": {
+    "title": "S88PollingCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "module_count": {
+    "title": "Module Count",
+    "type": "integer"
+    },
+    "module": {
+    "title": "Module",
+    "type": "integer"
+    },
+    "state": {
+    "title": "State",
+    "type": "integer"
+    }
+    }
+    },
+    "ServiceStatusDataConfigurationCommand": {
+    "title": "ServiceStatusDataConfigurationCommand",
+    "required": [
+    "hash_value",
+    "response"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "device_id": {
+    "title": "Device Id",
+    "type": "integer"
+    },
+    "index": {
+    "title": "Index",
+    "type": "integer"
+    },
+    "count": {
+    "title": "Count",
+    "type": "integer"
+    },
+    "data": {
+    "title": "Data",
+    "type": "string"
+    }
+    }
+    },
+    "SetMfxRegisterCounterCommand": {
+    "title": "SetMfxRegisterCounterCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "counter"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "counter": {
+    "title": "Counter",
+    "type": "integer"
+    }
+    }
+    },
+    "SetSystemIdentifierCommand": {
+    "title": "SetSystemIdentifierCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "system_id": {
+    "title": "System Id",
+    "type": "integer"
+    }
+    }
+    },
+    "SwitchingAccessoriesCommand": {
+    "title": "SwitchingAccessoriesCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id",
+    "position",
+    "power"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "position": {
+    "title": "Position",
+    "type": "integer"
+    },
+    "power": {
+    "title": "Power",
+    "type": "integer"
+    },
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemGoCommand": {
+    "title": "SystemGoCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemHaltCommand": {
+    "title": "SystemHaltCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemOverloadCommand": {
+    "title": "SystemOverloadCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "channel"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "channel": {
+    "title": "Channel",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemResetCommand": {
+    "title": "SystemResetCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "target"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "target": {
+    "title": "Target",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemStatusCommand": {
+    "title": "SystemStatusCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id",
+    "channel"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    },
+    "channel": {
+    "title": "Channel",
+    "type": "integer"
+    },
+    "measured_value": {
+    "title": "Measured Value",
+    "type": "integer"
+    }
+    }
+    },
+    "SystemStopCommand": {
+    "title": "SystemStopCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "id"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "id": {
+    "title": "Id",
+    "type": "integer"
+    }
+    }
+    },
+    "ValidationError": {
+    "title": "ValidationError",
+    "required": [
+    "loc",
+    "msg",
+    "type"
+    ],
+    "type": "object",
+    "properties": {
+    "loc": {
+    "title": "Location",
+    "type": "array",
+    "items": {
+    "type": "string"
+    }
+    },
+    "msg": {
+    "title": "Message",
+    "type": "string"
+    },
+    "type": {
+    "title": "Error Type",
+    "type": "string"
+    }
+    }
+    },
+    "WriteConfigCommand": {
+    "title": "WriteConfigCommand",
+    "required": [
+    "hash_value",
+    "response",
+    "loc_id",
+    "index",
+    "number",
+    "value"
+    ],
+    "type": "object",
+    "properties": {
+    "hash_value": {
+    "title": "Hash Value",
+    "type": "integer"
+    },
+    "response": {
+    "title": "Response",
+    "type": "boolean"
+    },
+    "loc_id": {
+    "title": "Loc Id",
+    "type": "integer"
+    },
+    "index": {
+    "title": "Index",
+    "type": "integer"
+    },
+    "number": {
+    "title": "Number",
+    "type": "integer"
+    },
+    "value": {
+    "title": "Value",
+    "type": "integer"
+    },
+    "control": {
+    "$ref": "#/components/schemas/WriteConfigControlByte"
+    },
+    "result": {
+    "$ref": "#/components/schemas/WriteConfigResultByte"
+    }
+    }
+    },
+    "WriteConfigControlByte": {
+    "title": "WriteConfigControlByte",
+    "required": [
+    "is_main",
+    "is_multi_byte",
+    "dcc_programming"
+    ],
+    "type": "object",
+    "properties": {
+    "is_main": {
+    "title": "Is Main",
+    "type": "boolean"
+    },
+    "is_multi_byte": {
+    "title": "Is Multi Byte",
+    "type": "boolean"
+    },
+    "dcc_programming": {
+    "$ref": "#/components/schemas/DCCProgramming"
+    }
+    }
+    },
+    "WriteConfigResultByte": {
+    "title": "WriteConfigResultByte",
+    "required": [
+    "is_write_successful",
+    "is_verify_successful"
+    ],
+    "type": "object",
+    "properties": {
+    "is_write_successful": {
+    "title": "Is Write Successful",
+    "type": "boolean"
+    },
+    "is_verify_successful": {
+    "title": "Is Verify Successful",
+    "type": "boolean"
+    }
+    }
+    }
+    }
+    }
+    }
