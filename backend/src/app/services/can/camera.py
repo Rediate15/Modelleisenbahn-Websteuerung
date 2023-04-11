@@ -1,43 +1,22 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, WebSocket
 import uvicorn
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import StreamingResponse
 import os
 import numpy as np
+import asyncio
 
 from fastapi.responses import HTMLResponse
 import cv2
-
-camera = cv2.VideoCapture(1)
+from ...utils.camera.cv import Camera
 
 router = APIRouter()
 
 templates = Jinja2Templates(directory="templates")
+camera = Camera()
 
-camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-
-def gen_frames(filter=False):  
-    while True:
-        success, frame = camera.read()  # read the camera frame
-        if not success:
-            break
-        else:
-            if filter:
-                hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-                
-                lower_gray = np.array([0, 0, 140])
-                upper_gray = np.array([120, 20, 170])
-
-                mask = cv2.inRange(hsv, lower_gray, upper_gray)
-
-                frame = cv2.bitwise_and(frame, frame, mask=mask)    
-
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+    
+        
 
 @router.get("/", response_class=HTMLResponse)
 def index(request: Request):
@@ -45,8 +24,13 @@ def index(request: Request):
 
 @router.get('/video_feed')
 def video_feed():
-    return StreamingResponse(gen_frames(), media_type='multipart/x-mixed-replace; boundary=frame')
+    return StreamingResponse(camera.gen_frames(), media_type='multipart/x-mixed-replace; boundary=frame')
 
-@router.get('/video_feed/filter')
-def filter():    
-    return StreamingResponse(gen_frames(filter=True), media_type='multipart/x-mixed-replace; boundary=frame')
+@router.websocket('/position')
+async def position_stream(websocket: WebSocket):
+    await websocket.accept()
+    while True:
+        await asyncio.sleep(0.1)
+        payload = camera.get_pos()
+        # payload = {"x": 10 / 2, "y": 10 / 2}
+        await websocket.send_json(payload)

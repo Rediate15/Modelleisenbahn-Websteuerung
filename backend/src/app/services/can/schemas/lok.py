@@ -7,5 +7,7 @@ class DirectionModel(BaseModel):
 class SpeedModel(BaseModel):
     speed: int
 
+class PositionModel(BaseModel):
+    position: int
 class FunctionValueModel(BaseModel):
     value: int
