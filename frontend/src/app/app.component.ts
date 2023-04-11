@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import { WebsocketService } from './services/websocket.service';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,8 +17,17 @@ export class AppComponent {
   public server_address = "http://localhost:8042";
   public hash: number | undefined;
   public systemNextState: string = "Go"
+  public points: any
+  
 
-  constructor(private httpClient: HttpClient) {
+  @ViewChild('canvas', { static: true }) 
+  canvas: ElementRef<HTMLCanvasElement>;
+
+  private ctx: CanvasRenderingContext2D;
+
+  
+
+  constructor(private httpClient: HttpClient, private webSocketService: WebsocketService) {
 
     this.httpClient.get<number>(`${this.server_address}/general/hash`).subscribe(hash => {
       this.hash = hash;
@@ -24,6 +36,62 @@ export class AppComponent {
       this.systemStop()
     })
     
+  }
+
+  ngOnInit(): void {
+    this.webSocketService.openWebSocket("ws://localhost:8042/camera/position");
+
+
+    this.httpClient.get("assets/data_new2.json").subscribe((data:any) =>{
+      console.log(data);
+      this.points = data.points;
+    })
+    const res = this.canvas.nativeElement.getContext('2d');
+    if (!res || !(res instanceof CanvasRenderingContext2D)) {
+        throw new Error('Failed to get 2D context');
+    }
+    this.ctx = res;
+    setInterval(() => {
+      this.animate()
+    }, 25);
+  }
+
+  ngOnDestroy(): void {
+    this.webSocketService.closeWebSocket();
+  }
+
+  animate(): void {
+    this.ctx.clearRect(0, 0, 960, 540)
+    this.ctx.fillStyle = 'blue';
+    
+    this.points.forEach((point: any) => {
+      
+
+      point.connected.forEach((connected: any) => {
+        
+        if (connected.id) {
+          this.ctx.strokeStyle = '#ff0000'
+          this.ctx.lineWidth = 5;
+        }
+        else {
+          this.ctx.strokeStyle = '#444444'
+          this.ctx.lineWidth = 3;
+        }
+        this.ctx.beginPath();
+        this.ctx.moveTo(point.pos[0], point.pos[1]);
+        this.ctx.lineTo(connected.point[0], connected.point[1]);
+        this.ctx.stroke();
+      })
+
+      
+      if (point.switch) {
+        this.ctx.fillStyle = 'blue';
+        this.ctx.fillRect(point.pos[0] -5, point.pos[1] -5, 10, 10);
+      }
+      
+    })
+    this.ctx.fillStyle = 'green';
+    this.ctx.fillRect(this.webSocketService.trainPosition.x -5, this.webSocketService.trainPosition.y -5, 10, 10);
   }
 
   systemStop() {
