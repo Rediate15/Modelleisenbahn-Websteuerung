@@ -6,7 +6,7 @@ from . import s88
 from . import configs
 from . import general
 from . import system
-# from . import camera
+from . import camera
 from . import switch
 
 router = APIRouter()
@@ -41,11 +41,11 @@ router.include_router(
     tags = ["system"]
 )
 
-# router.include_router(
-#     camera.router,
-#     prefix = "/camera",
-#     tags = ["camera"]
-# )
+router.include_router(
+    camera.router,
+    prefix = "/camera",
+    tags = ["camera"]
+)
 
 router.include_router(
     switch.router,

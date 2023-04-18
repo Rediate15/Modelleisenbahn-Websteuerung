@@ -1,10 +1,13 @@
-from fastapi import APIRouter, Request, WebSocket
+from fastapi import APIRouter, Request, WebSocket, Response
 import uvicorn
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import StreamingResponse
 import os
 import numpy as np
 import asyncio
+import threading
+from ...utils.camera.drive import Drive
+from .schemas.camera import TargetModel
 
 from fastapi.responses import HTMLResponse
 import cv2
@@ -34,3 +37,14 @@ async def position_stream(websocket: WebSocket):
         payload = camera.get_pos()
         # payload = {"x": 10 / 2, "y": 10 / 2}
         await websocket.send_json(payload)
+
+@router.post('/moveTo', status_code=204)
+async def moveTo(target: TargetModel):
+    def driveThread(camera, target):
+        drive = Drive(camera, target)
+        drive.loadPoints()
+        drive.exec_drive()
+    
+    thread = threading.Thread(target=driveThread, args=(camera, (target.target_x, target.target_y)))
+    thread.start()
+    return Response(status_code=204)
