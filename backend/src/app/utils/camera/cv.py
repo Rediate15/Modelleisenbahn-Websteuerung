@@ -8,9 +8,7 @@ class Camera:
         self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
         self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
         self.detection = Detection()
-        self.x = None
-        self.y = None
-        self.conf = None
+        self.positions = {'zug_1':None, 'zug_2':None, 'zug_3':None, 'zug_4':None}
 
     def gen_frames(self):  
         while True:
@@ -28,8 +26,18 @@ class Camera:
         success, frame = self.camera.read()  # read the camera frame
         if not success:
             raise Exception("Camera Error")
-        xyxy, conf, _ = self.detection.detect(im0s=frame)
-        self.x = (xyxy[0].item() + xyxy[2].item()) / 2
-        self.y = (xyxy[1].item() + xyxy[3].item()) / 2
-        self.conf = conf
-        return {"x": self.x, "y": self.y}
+
+        detections = self.detection.detect(im0s=frame)
+
+        for key in detections:
+            if detections[key] != None:
+                xyxy = detections[key][0]
+                conf = detections[key][1]
+
+                if conf > 0.4:
+                    x = (xyxy[0].item() + xyxy[2].item()) / 2
+                    y = (xyxy[1].item() + xyxy[3].item()) / 2
+                    self.positions[key] = (int(x), int(y))
+            else:
+                self.positions[key] = None
+        return self.positions

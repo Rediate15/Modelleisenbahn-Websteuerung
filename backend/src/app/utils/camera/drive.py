@@ -5,7 +5,10 @@ import threading
 from .pathfinding import Switch
 from .pathfinding import Point
 from .pathfinding import Pathfinding
+import time
+import asyncio
 
+driveEvent = asyncio.Event()
 class Drive:
     def __init__(self, camera, target):
         self.camera = camera
@@ -57,12 +60,13 @@ class Drive:
         running = True
         while running:
 
-            # _, xyxy, conf, _ = detect(frame)
+            if driveEvent.is_set():
+                break
             
-            if self.camera.conf and self.camera.conf > 0.35:
+            if self.camera.positions["zug_1"] != None:
                 closest_point = list(self.points.keys())[0]
-                pos_y = self.camera.y
-                pos_x = self.camera.x
+                pos_x = self.camera.positions["zug_1"][0]
+                pos_y = self.camera.positions["zug_1"][1]
                 lowest_error = ((pos_x-closest_point[0])**2 + (pos_y-closest_point[1])**2)
 
                 for i in self.points.keys():
@@ -124,3 +128,4 @@ class Drive:
 
                 
                 self.previous = self.start
+                time.sleep(0.2)

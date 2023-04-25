@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class WebsocketService {
 
   public webSocket: WebSocket
-  public trainPosition: any = { x: 0, y: 0}
+  public data: any
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class WebsocketService {
 
     this.webSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      this.trainPosition = message
+      this.data = message
     };
 
     this.webSocket.onclose = (event) => {

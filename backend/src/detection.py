@@ -18,8 +18,9 @@ class Detection:
         self.device = select_device('')
 
         # Load model
-        self.model = attempt_load("best.pt", map_location=self.device)  # load FP32 model
+        self.model = attempt_load("best_v3.pt", map_location=self.device)  # load FP32 model
         self.stride = int(self.model.stride.max())  # model stride
+        self.names = self.model.module.names if hasattr(self.model, 'module') else self.model.names
 
 
     def detect(self, im0s, imgsz = 640):
@@ -48,9 +49,17 @@ class Detection:
 
         # Process detections
         det = pred[0]
+        results = {'zug_1':None, 'zug_2':None, 'zug_3':None, 'zug_4':None}
+        result_counter = 0
         if len(det):
             # Rescale boxes from img_size to im0 size
             det[:, :4] = scale_coords(img.shape[2:], det[:, :4], im0s.shape).round()
 
-            *xyxy, conf, cls = det[0]
-        return xyxy, conf, cls
+            for i in det:
+                *xyxy, conf, cls = i
+                if results[self.names[int(cls)]] == None:
+                    results[self.names[int(cls)]] = (xyxy, conf)
+                    result_counter += 1
+                if result_counter == 4:
+                    break
+        return results

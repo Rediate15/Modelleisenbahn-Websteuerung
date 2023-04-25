@@ -42,7 +42,7 @@ export class AppComponent {
     this.webSocketService.openWebSocket("ws://localhost:8042/camera/position");
 
 
-    this.httpClient.get("assets/data_new2.json").subscribe((data:any) =>{
+    this.httpClient.get("assets/data_new3.json").subscribe((data:any) =>{
       console.log(data);
       this.points = data.points;
     })

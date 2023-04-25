@@ -6,12 +6,13 @@ import os
 import numpy as np
 import asyncio
 import threading
-from ...utils.camera.drive import Drive
+from ...utils.camera.drive import Drive, driveEvent
 from .schemas.camera import TargetModel
 
 from fastapi.responses import HTMLResponse
 import cv2
 from ...utils.camera.cv import Camera
+
 
 router = APIRouter()
 
@@ -43,8 +44,10 @@ async def moveTo(target: TargetModel):
     def driveThread(camera, target):
         drive = Drive(camera, target)
         drive.loadPoints()
+        driveEvent.clear()
         drive.exec_drive()
     
+    driveEvent.set()
     thread = threading.Thread(target=driveThread, args=(camera, (target.target_x, target.target_y)))
     thread.start()
     return Response(status_code=204)
