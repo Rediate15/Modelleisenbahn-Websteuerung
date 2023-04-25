@@ -14,7 +14,8 @@ export class AppComponent {
 
   public trains: Array<any> = [];
   public selected: number | undefined;
-  public server_address = "http://localhost:8042";
+  // public server_address = "http://localhost:8042";
+  public server_address = "http://10.43.10.16:8042";
   public hash: number | undefined;
   public systemNextState: string = "Go"
   public points: any
@@ -27,7 +28,7 @@ export class AppComponent {
 
   
 
-  constructor(private httpClient: HttpClient, private webSocketService: WebsocketService) {
+  constructor(private httpClient: HttpClient, private webSocketService: WebsocketService, private switchSocket: WebsocketService) {
 
     this.httpClient.get<number>(`${this.server_address}/general/hash`).subscribe(hash => {
       this.hash = hash;
@@ -39,7 +40,8 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.webSocketService.openWebSocket("ws://localhost:8042/camera/position");
+    this.webSocketService.openWebSocket("ws://10.43.10.16:8042/camera/position");
+    this.switchSocket.openWebSocket("ws://10.43.10.16:8042/switch/ws")
 
 
     this.httpClient.get("assets/data_new3.json").subscribe((data:any) =>{
@@ -58,6 +60,7 @@ export class AppComponent {
 
   ngOnDestroy(): void {
     this.webSocketService.closeWebSocket();
+    this.switchSocket.closeWebSocket();
   }
 
   animate(): void {
@@ -91,7 +94,10 @@ export class AppComponent {
       
     })
     this.ctx.fillStyle = 'green';
-    this.ctx.fillRect(this.webSocketService.trainPosition.x -5, this.webSocketService.trainPosition.y -5, 10, 10);
+    if (this.webSocketService.data) {
+      this.ctx.fillRect(this.webSocketService.data.zug_1[0] -10, this.webSocketService.data.zug_1[1] -10, 20, 20);
+    }
+    
   }
 
   systemStop() {

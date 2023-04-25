@@ -1,5 +1,6 @@
-from fastapi import APIRouter, Header
+from fastapi import APIRouter, Header, WebSocket, WebSocketDisconnect
 from typing import Type
+import asyncio
 
 from ...utils.communication import send_can_message
 from .helper import connect, get_single_response_timeout, return204
@@ -11,8 +12,34 @@ from .schemas.lok import FunctionValueModel, SpeedModel, DirectionModel
 
 from .configs import get_config
 
+from ...utils.communication import ConnectionManager
+from .reader import BackgroundReader
+
+from ...utils.camera.drive import driveEvent
 
 router = APIRouter()
+speed_manager = ConnectionManager()
+direction_manager = ConnectionManager()
+reader = BackgroundReader({
+    LocomotiveSpeedCommand:speed_manager,
+    LocomotiveDirectionCommand: direction_manager
+    })
+
+
+@router.on_event("startup")
+async def app_startup():
+    await reader.startup()
+    loop = asyncio.get_event_loop()
+    loop.create_task(reader.run_main())
+
+@router.websocket("/speed")
+async def websocket_endpoint(websocket: WebSocket):
+    await speed_manager.connect(websocket)
+    try:
+        while True:
+            data = await websocket.receive_text()
+    except WebSocketDisconnect:
+        speed_manager.disconnect(websocket)
 
 @router.get("/{loc_id}/speed", response_model=SpeedModel)
 async def get_speed(loc_id: int, x_can_hash: str = Header(None)):
@@ -31,6 +58,7 @@ async def get_speed(loc_id: int, x_can_hash: str = Header(None)):
 
 @router.post("/{loc_id}/speed", status_code=204)
 async def set_speed(loc_id: int, speed: SpeedModel, x_can_hash: str = Header(None)):
+    driveEvent.set()
     message = LocomotiveSpeedCommand(loc_id = loc_id, speed = speed.speed, hash_value = x_can_hash, response = False)
 
     def check(m):
@@ -44,6 +72,15 @@ async def set_speed(loc_id: int, speed: SpeedModel, x_can_hash: str = Header(Non
         await send_can_message(message)
         return await get_single_response_timeout(connection, check, return204)
 
+
+@router.websocket("/direction")
+async def websocket_endpoint(websocket: WebSocket):
+    await direction_manager.connect(websocket)
+    try:
+        while True:
+            data = await websocket.receive_text()
+    except WebSocketDisconnect:
+        direction_manager.disconnect(websocket)
 
 @router.get("/{loc_id}/direction", response_model=DirectionModel)
 async def get_direction(loc_id: int, x_can_hash: str = Header(None)):
@@ -63,6 +100,7 @@ async def get_direction(loc_id: int, x_can_hash: str = Header(None)):
 
 @router.post("/{loc_id}/direction", status_code=204)
 async def set_direction(loc_id: int, direction: DirectionModel, x_can_hash: str = Header(None)):
+    driveEvent.set()
     message = LocomotiveDirectionCommand(loc_id = loc_id, direction = direction.direction, hash_value = x_can_hash, response = False)
 
     def check(m):
