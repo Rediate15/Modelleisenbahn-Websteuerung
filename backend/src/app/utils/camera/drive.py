@@ -10,11 +10,12 @@ import asyncio
 
 driveEvent = asyncio.Event()
 class Drive:
-    def __init__(self, camera, target):
+    def __init__(self, camera, target, loc_id):
         self.camera = camera
         self.points = {}
         self.start = None
         self.target = target
+        self.loc_id = loc_id
 
         self.url = "http://localhost:8042"
 
@@ -55,7 +56,7 @@ class Drive:
 
     def exec_drive(self):
         print("Drive")
-        requests.post(url=self.url+"/lok/16391/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
+        requests.post(url=self.url+"/lok/"+self.loc_id+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
 
         running = True
         while running:
@@ -81,8 +82,8 @@ class Drive:
                     if (self.initialDirektion or self.toggle) and self.path != [] and closest_point != self.path[1]:
                         print("toggle")
                         
-                        requests.post(url=self.url+"/lok/16391/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
-                        requests.post(url=self.url+"/lok/16391/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+self.loc_id+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+self.loc_id+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
                         self.initialDirektion = False
                         self.toggle = False
                     elif self.initialDirektion and self.path != [] and closest_point == self.path[1]:
@@ -118,7 +119,7 @@ class Drive:
                                     self.directionToggleSwitches.append(point_pos)
                         self.switchesSet = True
                     if self.start == self.target:
-                        requests.post(url=self.url+"/lok/16391/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+self.loc_id+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
                         print("finished")
                         self.finished = True
                         break
