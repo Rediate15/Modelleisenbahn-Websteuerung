@@ -15,8 +15,6 @@ from .configs import get_config
 from ...utils.communication import ConnectionManager
 from .reader import BackgroundReader
 
-from ...utils.camera.drive import driveEvent
-
 
 router = APIRouter()
 manager = ConnectionManager()
@@ -24,7 +22,6 @@ reader = BackgroundReader({SwitchingAccessoriesCommand: manager})
 
 @router.post("/{loc_id}/position", status_code=204)
 async def set_switch(loc_id: int, position: PositionModel, x_can_hash: str = Header(None)):
-    driveEvent.set()
     message = SwitchingAccessoriesCommand(loc_id = loc_id, position = position.position, power = 1, hash_value = x_can_hash, response = False)
 
     def check(m):

@@ -28,6 +28,7 @@ class Drive:
         self.finished = False
         self.directionToggleSwitches = []
         self.toggle = False
+        self.locIdLabelMap = {16391:"zug_1", 16389:"zug_2", 16392:"zug_3", 16390:"zug_4"}
         print("Init")
 
     def setSwitchFunction(self, url, id, position, hash):
@@ -55,19 +56,19 @@ class Drive:
         print("Load finished")
 
     def exec_drive(self):
-        print("Drive")
-        requests.post(url=self.url+"/lok/"+self.loc_id+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
+        requests.post(url=self.url+"/lok/"+str(self.loc_id)+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
 
+        driveEvent.clear()
         running = True
         while running:
-
             if driveEvent.is_set():
+                print("cancel")
                 break
             
-            if self.camera.positions["zug_1"] != None:
+            if self.camera.positions[self.locIdLabelMap[self.loc_id]] != None:
                 closest_point = list(self.points.keys())[0]
-                pos_x = self.camera.positions["zug_1"][0]
-                pos_y = self.camera.positions["zug_1"][1]
+                pos_x = self.camera.positions[self.locIdLabelMap[self.loc_id]][0]
+                pos_y = self.camera.positions[self.locIdLabelMap[self.loc_id]][1]
                 lowest_error = ((pos_x-closest_point[0])**2 + (pos_y-closest_point[1])**2)
 
                 for i in self.points.keys():
@@ -82,8 +83,8 @@ class Drive:
                     if (self.initialDirektion or self.toggle) and self.path != [] and closest_point != self.path[1]:
                         print("toggle")
                         
-                        requests.post(url=self.url+"/lok/"+self.loc_id+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
-                        requests.post(url=self.url+"/lok/"+self.loc_id+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+str(self.loc_id)+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+str(self.loc_id)+"/speed", json = {"speed": 300}, headers = {"x-can-hash":str(self.hash)})
                         self.initialDirektion = False
                         self.toggle = False
                     elif self.initialDirektion and self.path != [] and closest_point == self.path[1]:
@@ -119,7 +120,7 @@ class Drive:
                                     self.directionToggleSwitches.append(point_pos)
                         self.switchesSet = True
                     if self.start == self.target:
-                        requests.post(url=self.url+"/lok/"+self.loc_id+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
+                        requests.post(url=self.url+"/lok/"+str(self.loc_id)+"/direction", json = {"direction": "Toggle"}, headers = {"x-can-hash":str(self.hash)})
                         print("finished")
                         self.finished = True
                         break

@@ -25,7 +25,7 @@ class Camera:
     def get_pos(self):
         success, frame = self.camera.read()  # read the camera frame
         if not success:
-            raise Exception("Camera Error")
+            return {'zug_1':None, 'zug_2':None, 'zug_3':None, 'zug_4':None}
 
         detections = self.detection.detect(im0s=frame)
 
@@ -38,6 +38,8 @@ class Camera:
                     x = (xyxy[0].item() + xyxy[2].item()) / 2
                     y = (xyxy[1].item() + xyxy[3].item()) / 2
                     self.positions[key] = (int(x), int(y))
+                else:
+                    self.positions[key] = None
             else:
                 self.positions[key] = None
         return self.positions

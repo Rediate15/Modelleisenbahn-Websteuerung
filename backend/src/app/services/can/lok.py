@@ -15,7 +15,6 @@ from .configs import get_config
 from ...utils.communication import ConnectionManager
 from .reader import BackgroundReader
 
-from ...utils.camera.drive import driveEvent
 
 router = APIRouter()
 speed_manager = ConnectionManager()
@@ -58,7 +57,6 @@ async def get_speed(loc_id: int, x_can_hash: str = Header(None)):
 
 @router.post("/{loc_id}/speed", status_code=204)
 async def set_speed(loc_id: int, speed: SpeedModel, x_can_hash: str = Header(None)):
-    driveEvent.set()
     message = LocomotiveSpeedCommand(loc_id = loc_id, speed = speed.speed, hash_value = x_can_hash, response = False)
 
     def check(m):
@@ -100,7 +98,6 @@ async def get_direction(loc_id: int, x_can_hash: str = Header(None)):
 
 @router.post("/{loc_id}/direction", status_code=204)
 async def set_direction(loc_id: int, direction: DirectionModel, x_can_hash: str = Header(None)):
-    driveEvent.set()
     message = LocomotiveDirectionCommand(loc_id = loc_id, direction = direction.direction, hash_value = x_can_hash, response = False)
 
     def check(m):

@@ -21,12 +21,21 @@ router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 camera = Camera()
 
-@router.on_event("startup")
-async def app_startup():
-    loop = asyncio.get_event_loop()
-    asyncio.ensure_future(camera.get_pos())
-    loop.run_forever()
-        
+# @router.on_event("startup")
+# async def app_startup():
+#     loop = asyncio.get_event_loop()
+
+#     try:
+#         loop.create_task(calc_pos())
+#     except KeyboardInterrupt:
+#         pass
+#     finally:
+#         print("Closing Loop")
+#         loop.close()
+
+def calc_pos():
+    while True:
+        camera.get_pos()
 
 @router.get("/", response_class=HTMLResponse)
 def index(request: Request):
@@ -47,7 +56,7 @@ async def position_stream(websocket: WebSocket):
     await websocket.accept()
     while True:
         await asyncio.sleep(0.1)
-        payload = camera.positions
+        payload = camera.get_pos()
         # payload = {"x": 10 / 2, "y": 10 / 2}
         await websocket.send_json(payload)
 
