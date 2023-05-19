@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root'
-})
 export class WebsocketService {
 
   public webSocket: WebSocket
   public data: any
+  private onEvent: (message:any) => void
 
-  constructor() { }
+  constructor(onEvent:(message:any) => void) {
+    this.onEvent = onEvent
+  }
 
   public openWebSocket(url:string) {
     this.webSocket = new WebSocket(url);
@@ -20,6 +18,7 @@ export class WebsocketService {
     this.webSocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
       this.data = message
+      this.onEvent(message)
     };
 
     this.webSocket.onclose = (event) => {

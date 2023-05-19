@@ -1,45 +1,81 @@
-<div class="page">
-  <div class="container">
-    <h3 class="mt-5">Live Streaming</h3>
-    <img src="{{server_address + '/camera/video_feed'}}" width="100%">
+<mat-toolbar color="primary">
+  <span>Modelleisenbahn Websteuerung</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="refresh()">
+    <mat-icon class="refresh-icon">refresh</mat-icon>
+  </button>
+  
+</mat-toolbar>
+<div class="content">
+  <div class="center">
+      <img src="http://{{server_address + '/camera/video_feed'}}" class="camera" [hidden]="mapPerspective">
+      <canvas #canvas class="canvas" width="960" height="540" [hidden]="!mapPerspective"></canvas>
+    <div *ngIf="trains.length > 0; else trainsElseBlock">
+      <mat-tab-group class="tab-group" (selectedIndexChange)="changeTrainSelection($event)">
+        <mat-tab *ngFor="let train of trains; index as i">
+          <ng-template mat-tab-label >
+            <div [style.color]="train.color">
+              {{train.name}}
+            </div></ng-template>
+          <div class="grid-container">
+            <div class="grid-element">
+              <mat-label>View:</mat-label>
+            </div>
+            <div class="grid-element form-value">
+              <mat-slide-toggle [checked]="mapPerspective" (change)="toggleMap($event)">Map</mat-slide-toggle>
+            </div>
+            
+          </div>
+          <div class="grid-container">
+            <div class="grid-element">
+              <mat-label>System:</mat-label>
+            </div>
+            <div class="grid-element form-value">
+              <button mat-button class="stopButton" (click)="sendSystemCommand()" [style.backgroundColor]="getStateColor(systemState)">{{systemState}}</button>
+            </div>
+            
+          </div>
+          <div class="grid-container">
+            <div class="grid-element">
+              <mat-label>Speed:</mat-label>
+            </div>
+            <div class="grid-element form-value">
+              <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel" class="speedslider">
+                <input [value]="train.speed" (valueChange)="onSpeedChange($event)" matSliderThumb >
+              </mat-slider>
+            </div>
+            
+          </div>
 
-    <div class="buttonMenu" *ngIf="trains.length > 0; else trainsElseBlock">
-      <div class="trainSelect">
-        <li *ngFor="let train of trains; index as i" class="trainList">
-          <button  class="trainElement trainElementSelected" (click)="onTrainClick(i)" [style.backgroundColor]=train.background>
-            {{train.name}}
-          </button>          
-        </li>
-      </div>
-      <div class="buttonOverview" *ngIf="selected != undefined">
-        <div class="flexrow">
-          <span class="speed">Speed:</span>
-          <mat-slider min="0" max="100" step="1" showTickMarks discrete [displayWith]="formatLabel" class="speedslider">
-            <input value="{{trains[selected].speed}}" (valueChange)="onSpeedChange($event)" matSliderThumb >
-          </mat-slider>
-        </div>
-        <div class="flexrow">
-          <span class="speed">Direction:</span>
-          <button class="" (click)="onForwards()" [style.backgroundColor]="trains[selected].direction ? '#aaaaaa' : '#dddddd'">
-            Forwards
-          </button>
-          <button class="" (click)="onBackwards()" [style.backgroundColor]="!trains[selected].direction ? '#aaaaaa' : '#dddddd'">
-            Backwards
-          </button>
-        </div>
-        <button class="stopButton" (click)="onClickStop()">
-          {{systemNextState}}
-        </button>
+          <div class="grid-container">
+            <div class="grid-element">
+              <span class="speed">Direction:</span>
+            </div>
+            <div class="grid-element form-value">
+              <mat-button-toggle-group name="direction" [value]="train.direction" class="directionToggle">
+                <mat-button-toggle value="Forwards" (click)="onDirectionChange('Forwards')">Forwards</mat-button-toggle>
+                <mat-button-toggle value="Backwards" (click)="onDirectionChange('Backwards')">Backwards</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+            
+          </div>
+          <div class="grid-container">
+            <div class="grid-element">
+              <mat-label>Autonomous Driving:</mat-label>
+            </div>
+            <div class="grid-element form-value">
+              <mat-slide-toggle [checked]="moveTo" (change)="setMoveTo($event)">Selecting Target</mat-slide-toggle>
+            </div>
+            
+          </div>
 
-        
-
-      </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
-
     <ng-template #trainsElseBlock>
       No trains available
     </ng-template>
-    <canvas #canvas class="canvas" width="960" height="540"></canvas>
     
   </div>
+  
 </div>

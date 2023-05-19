@@ -1,56 +1,60 @@
-.container {
+.spacer {
+    flex: 1 1 auto;
+}
+
+.refresh-icon {
+    padding: 0 14px;
+}
+
+.content {
+    margin-top: 5px;
+    display: flex;
     
-    max-width: 640px;
+}
+
+.center {
     margin: 0 auto;
+    width: 50%;
 }
 
-.buttonMenu {
+.camera {
+    margin: 0 auto;
+    width: 960px;
+    height: 540px;
+}
+
+.grid-container {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+}
+
+.grid-element {
     display: flex;
-    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
-.trainList {
-    list-style-type: none;  
-    padding: 3px;
-    border-right: 1px solid black;
-    border-left: 1px solid black;
-}
-
-.trainElement {
-    margin: 0.25rem 0;
-    width: 6rem;
-    height: 6rem;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.buttonOverview {
-    margin: 1rem 0 0 3rem;
-}
-
-.flexrow {
-    display: flex;
-    flex-direction: row;
-}
-
-.stopButton {
-    margin-top: 1rem;
-    color: white;
-    background-color: red;
-    font-weight: bold;
-    width: 5rem;
-    height: 5rem;
-    border: 0;
-}
-
-.speed {
-    margin: auto 2rem auto 0;
+.form-value {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .speedslider {
-    width: 15rem;
+    width: 200px;
 }
 
-.canvas {
-    display: block;
+.directionToggle {
+    width: 190px;
+    height: 50px;
 }
+
+.stopButton {
+    width: 100px;
+    height: 50px;
+    color: #ffffff !important;
+}
+
+.red {
+    background-color: #ff0000;
+  }
