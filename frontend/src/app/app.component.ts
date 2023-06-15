@@ -1,6 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { WebsocketService } from './services/websocket.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 
 @Component({
@@ -81,14 +83,25 @@ export class AppComponent {
   })
   
 
-  constructor(private httpClient: HttpClient){
+  constructor(private httpClient: HttpClient, public dialog: MatDialog){
     this.httpClient.get<number>(`http://${this.server_address}/general/hash`).subscribe(hash => {
       this.hash = hash;
       console.log(this.hash)
       this.getAllTrains()
       this.sendSystemCommand()
       this.getSwitches()
+    }, error => {
+      this.openDialog(error)
     })
+  }
+
+  openDialog(error: any) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: {
+        reload: () => {this.refresh()},
+        error: error
+      }
+    });
   }
 
   filterTrains() {
@@ -114,6 +127,8 @@ export class AppComponent {
             }
           })
         })
+      }, error => {
+        this.openDialog(error)
       })
   }
 
@@ -124,6 +139,8 @@ export class AppComponent {
       this.getAllTrains()
       this.sendSystemCommand()
       this.getSwitches()
+    }, error => {
+      this.openDialog(error)
     })
   }
 
@@ -145,6 +162,8 @@ export class AppComponent {
           train.direction = directionResponse.direction
         })
       });
+    }, error => {
+      this.openDialog(error)
     })
   }
 
@@ -161,11 +180,15 @@ export class AppComponent {
     if (this.systemState == "Stop") {
       this.httpClient.post(`http://${this.server_address}/system/status?status=${"Go"}`, {}, {headers: headers}).subscribe(() => {
         this.systemState = "Go"
+      }, error => {
+        this.openDialog(error)
       })
     }
     else if (this. systemState == "Go") {
       this.httpClient.post(`http://${this.server_address}/system/status?status=${"Stop"}`, {}, {headers: headers}).subscribe(() => {
         this.systemState = "Stop"
+      }, error => {
+        this.openDialog(error)
       })
     }
   }
@@ -182,7 +205,9 @@ export class AppComponent {
       const headers = new HttpHeaders({'x-can-hash':String(this.hash)})
       this.httpClient.post<any>(`http://${this.server_address}/lok/${this.selectedTrainID}/speed`, {
         "speed": value * 10
-      }, {headers: headers}).subscribe()
+      }, { headers: headers }).subscribe(() => { }, error => {
+        this.openDialog(error)
+      })
   }
 
   onDirectionChange(direction: string) {
@@ -196,6 +221,8 @@ export class AppComponent {
           return
         }
       })
+    }, error => {
+      this.openDialog(error)
     })
   }
 
@@ -255,6 +282,8 @@ export class AppComponent {
       
 
 
+    }, error => {
+      this.openDialog(error)
     })
     const res = this.canvas.nativeElement.getContext('2d');
     if (!res || !(res instanceof CanvasRenderingContext2D)) {
@@ -298,7 +327,9 @@ export class AppComponent {
       this.httpClient.post<any>(`http://${this.server_address}/camera/moveTo/${this.selectedTrainID}`, {
         "target_x": closestPoint.pos[0],
         "target_y": closestPoint.pos[1]
-      }, {headers: headers}).subscribe()
+      }, { headers: headers }).subscribe(() => { }, error => {
+        this.openDialog(error)
+      })
 
       return
     }
@@ -312,27 +343,37 @@ export class AppComponent {
           point.position++
           this.httpClient.post<any>(`http://${this.server_address}/switch/${point.id}/position`, {
               "position": 1
-            }, {headers: headers}).subscribe()
+          }, { headers: headers }).subscribe(() => { }, error => {
+            this.openDialog(error)
+          })
         } else {
           if (point.position2 == 0) {
             point.position2++
             this.httpClient.post<any>(`http://${this.server_address}/switch/${point.id2}/position`, {
               "position": 1
-            }, {headers: headers}).subscribe()
+            }, { headers: headers }).subscribe(() => { }, error => {
+              this.openDialog(error)
+            })
           } else if (point.position2 == 1) {
             point.position2 = 0
             this.httpClient.post<any>(`http://${this.server_address}/switch/${point.id2}/position`, {
               "position": 0
-            }, {headers: headers}).subscribe()
+            }, { headers: headers }).subscribe(() => { }, error => {
+              this.openDialog(error)
+            })
             point.position = 0
             this.httpClient.post<any>(`http://${this.server_address}/switch/${point.id}/position`, {
               "position": 0
-            }, {headers: headers}).subscribe()
+            }, { headers: headers }).subscribe(() => { }, error => {
+              this.openDialog(error)
+            })
           } else {
             
             this.httpClient.post<any>(`http://${this.server_address}/switch/${point.id}/position`, {
               "position": 0
-            }, {headers: headers}).subscribe()
+            }, { headers: headers }).subscribe(() => { }, error => {
+              this.openDialog(error)
+            })
             point.position = 0
           }
         }
