@@ -3,7 +3,7 @@ from detection import Detection
 
 class Camera:
     def __init__(self):
-        self.camera = cv2.VideoCapture(1)
+        self.camera = cv2.VideoCapture(0)
 
         self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
         self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)

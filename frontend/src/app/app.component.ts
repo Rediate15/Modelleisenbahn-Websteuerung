@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { WebsocketService } from './services/websocket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
+import { backend_ip } from './variables';
 
 
 @Component({
@@ -12,8 +13,7 @@ import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 })
 export class AppComponent {
 
-  // public server_address = "10.43.10.16:8042"
-  public server_address = "localhost:8042"
+  public server_address = backend_ip
   public hash: number | undefined
   public selectedTrainID: number | undefined
   public mapPerspective = false
