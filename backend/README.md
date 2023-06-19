@@ -146,6 +146,18 @@ Tmuxp can be closed via:
 - Grafana will not shutdown automatically on closing tmux, however Grafana will be killed on tmux start
 - You can manually kill Grafana by running `sudo pkill grafana`
 
+### Shortcut to run the camera related services
+You can use tmuxp profile for loading a preconfigured tmux session by running
+```
+tmuxp load ./assets/camera-controll.tmuxp.yaml
+```
+Tmuxp will take care of activating the venv for you.
+Tmuxp can be closed via:
+- ctrl+b 
+- &
+- y
+- enter
+
 ### Development
 When no Märklin CS3+ is available, the `dummy_central_station.py` script may be used. It will forward all received CAN messages to the connected `raw_can_receiver` service.
 ```sh
@@ -160,3 +172,6 @@ Documentation for the various services can be found in the `./doc` folder:
 - Verify that the `venv` is active and all packages were installed inside of the `venv`
 - Check if `config.py.sample` was updated. `config.py` might be outdated and changes from `config.py.sample` might need to be applied.
 - Verify the configured IP's
+
+## Additional information
+This project uses a machine learning model with the library torch. When using torch on a Raspberry Pi the version 1.11 has to be used since newer versions aren't compatible with the pi architecture at the time of writing this.
