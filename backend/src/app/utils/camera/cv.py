@@ -5,8 +5,8 @@ class Camera:
     def __init__(self):
         self.camera = cv2.VideoCapture(1)
 
-        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 960)
+        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 540)
         self.detection = Detection()
         self.positions = {'zug_1':None, 'zug_2':None, 'zug_3':None, 'zug_4':None}
 
