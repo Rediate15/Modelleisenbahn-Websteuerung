@@ -17,5 +17,5 @@ Set the ```backend_ip``` in the ```src/app/variables.ts``` file the the ip addre
 
 3. Start the application
 ```
-ng serve
+npm start
 ```
