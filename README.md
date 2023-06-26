@@ -20,7 +20,7 @@ To setup and start the backend service go into the backend folder by executing `
 Alternatively when using the prepared Raspberry Pi the setup instructions can be skipped. Follow the following instructions to start the backend service
 
 ### Using prepared Raspberry Pi
-To connect to the prepared Raspberry Pi establish an SSH ponnection to the pi. At the point of writing this, the IP is ```10.43.10.25```, the username ```user``` and the password ```123```. For the connection tools like Putty can be used.
+To connect to the prepared Raspberry Pi establish an SSH connection to the pi. At the point of writing this, the IP is ```193.196.7.37```, the username ```user``` and the password ```123```. For the connection tools like Putty can be used.
 
 After successfully connecting to the pi, the backend services can be started individually.
 ```

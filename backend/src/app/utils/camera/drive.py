@@ -46,6 +46,8 @@ class Drive:
                 if len(j) == 0:
                     continue
                 else:
+                    if "id2" in j:
+                         connected.append({"point":tuple(j["point"]), "id":j["id"], "position":j["position"], "id2":j["id2"], "position2":j["position2"]})
                     connected.append({"point":tuple(j["point"]), "id":j["id"], "position":j["position"]})
             if i["switch"]:
                 self.points[pos] = Switch(pos, connected)
@@ -112,8 +114,11 @@ class Drive:
 
                                             thread = threading.Thread(target=self.setSwitchFunction, args=(self.url, str(connected['id']), connected['position'], self.hash))
                                             thread.start()
+
+                                            print(connected)
                                             
                                             if "id2" in connected:
+                                                print(connected, "id2")
                                                 thread2 = threading.Thread(target=self.setSwitchFunction, args=(self.url, str(connected['id2']), connected['position2'], self.hash))
                                                 thread2.start()
                                 if prev and next:
